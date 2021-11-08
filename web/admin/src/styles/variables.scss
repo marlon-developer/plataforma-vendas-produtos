@@ -1,0 +1,31 @@
+$blue:#324157;
+$light-blue:#3A71A8;
+$red:#C03639;
+$pink: #E65D6E;
+$green: #30B08F;
+$tiffany: #4AB7BD;
+$yellow:#FEC171;
+$panGreen: #30B08F;
+
+$menuText:white;
+$menuActiveText:#409EFF;
+$subMenuActiveText:#f4f4f5;
+
+$menuBg:#2C2F31;
+$menuHover:#000;
+
+$subMenuBg:#2C2F31;
+$subMenuHover:#000;
+
+$sideBarWidth: 180px;
+
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+  menuBg: $menuBg;
+  menuHover: $menuHover;
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+  sideBarWidth: $sideBarWidth;
+}
