@@ -55,85 +55,82 @@
 </template>
 
 <script>
-  import { validateEmail } from '@/utils/validate'
+    import { validateEmail } from '@/utils/validate'
 
-  export default {
-    name: 'Login',
-    data() {
-      const validateUsername = (rule, value, callback) => {
-        if (!validateEmail(value)) {
-          callback(new Error('Please enter the correct user name'))
-        } else {
-          callback()
-        }
-      }
-      const validatePassword = (rule, value, callback) => {
-        if (value.length < 6) {
-          callback(new Error('The password can not be less than 6 digits'))
-        } else {
-          callback()
-        }
-      }
-      return {
-        loginForm: {
-          username: '',
-          password: ''
-        },
-        loginRules: {
-          username: [
-            { required: true, trigger: 'blur', validator: validateUsername }
-          ],
-          password: [
-            { required: true, trigger: 'blur', validator: validatePassword }
-          ]
-        },
-        passwordType: 'password',
-        loading: false,
-        showDialog: false,
-        redirect: undefined
-      }
-    },
-    watch: {
-      $route: {
-        handler: function(route) {
-          this.redirect = route.query && route.query.redirect
-        },
-        immediate: true
-      }
-    },
-    methods: {
-      showPwd() {
-        if (this.passwordType === 'password') {
-          this.passwordType = ''
-        } else {
-          this.passwordType = 'password'
-        }
-      },
-      handleLogin() {
-        this.$refs.loginForm.validate(valid => {
-          if (valid) {
-            this.loading = true
-            this.$store
-              .dispatch('LoginByUsername', this.loginForm)
-              .then(() => {
-                this.loading = false
-                this.$router.push({ path: this.redirect || '/' })
-              })
-              .catch(() => {
-                this.loading = false
-              })
-          } else {
-            console.log('error submit!!')
-            return false
-          }
-        })
-      },
+    export default {
+        name: 'Login',
+        data() {
+            const validateUsername = (rule, value, callback) => {
+                !validateEmail(value)
+                    ? callback(new Error('Por favor entro com o nome correto'))
+                    : callback()
+            }
+            const validatePassword = (rule, value, callback) => {
+                value.length < 6
+                    ? callback(new Error('A senha precisa de 6 dígitos'))
+                    : callback()
+            }
 
-      handleReset() {
-        this.$router.push({ name: 'ForgotPassword' })
-      }
+            return {
+                loginForm: {
+                    username: '',
+                    password: ''
+                },
+                loginRules: {
+                    username: [{
+                        required : true,
+                        trigger  : 'blur',
+                        validator: validateUsername
+                    }],
+                    password: [{
+                        required : true,
+                        trigger  : 'blur',
+                        validator: validatePassword
+                    }]
+                },
+                passwordType: 'password',
+                loading     : false,
+                showDialog  : false,
+                redirect    : undefined
+            }
+        },
+
+        watch: {
+            $route: {
+                handler: function(route) {
+                    this.redirect = route.query && route.query.redirect
+                },
+                immediate: true
+            }
+        },
+
+        methods: {
+            showPwd() {
+                this.passwordType = this.passwordType === 'password' ? '' : 'password'
+            },
+            handleLogin() {
+                this.$refs.loginForm.validate(valid => {
+                    if (!valid) {
+                        return false
+                    } else {
+                        this.loading = true
+                        this.$store
+                            .dispatch('LoginByUsername', this.loginForm)
+                            .then(() => {
+                                this.loading = false
+                                this.$router.push({ path: this.redirect || '/' })
+                            })
+                            .catch(() => {
+                                this.loading = false
+                            })
+                    }
+                })
+            },
+            handleReset() {
+                this.$router.push({ name: 'ForgotPassword' })
+            }
+        }
     }
-  }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">

@@ -26,73 +26,69 @@
   </div>
 </template>
 <script>
-import { validateEmail } from '@/utils/validate'
+    import { validateEmail } from '@/utils/validate'
 
-export default {
-  name: 'ForgotPass',
+    export default {
+        name: 'ForgotPass',
 
-  data() {
-    return {
-      formData: {
-        email: ''
-      },
-      loading: false
+        data() {
+            return {
+                formData: {
+                    email: ''
+                },
+                loading: false
+            }
+        },
+
+        mounted() {
+            const token = this.$route.query.token
+            if (this.$route.query.token) {
+                this.$router.push({ name: 'ResetPassword', query: { token } })
+            }
+        },
+
+        methods: {
+            handleReset() {
+                if (!validateEmail(this.formData.email)) {
+                    this.$message({
+                        message : 'E-mail Inválido!',
+                        type    : 'error',
+                        duration: 10000
+                    })
+                    return
+                }
+
+                this.loading = true
+                this.$store
+                    .dispatch('ForgotPassword', this.formData)
+                    .then(() => {
+                        this.loading = false
+                        this.$message({
+                            message: `Sucesso! Enviamos um e-mail para ${this.formData.email}, verifique sua caixa de entrada!`,
+                            type: 'success',
+                            duration: 30000
+                        })
+                        this.$router.push('/login')
+                    })
+                    .catch(() => {
+                        this.$message({
+                            message : `Ops! houve um erro ao enviar o e-mail para ${this.formData.email}, Tente novamente mais tarde!`,
+                            type    : 'error',
+                            duration: 30000
+                        })
+                        this.loading = false
+                    })
+            },
+
+            handleLogin() {
+                this.loading = true
+                setTimeout(() => {
+                    this.$router.push({ path: '/login' })
+                    this.loading = false
+                }, 100)
+            }
+        }
     }
-  },
-
-  mounted() {
-    const token = this.$route.query.token
-    if (token) {
-      // eslint-disable-next-line
-      this.$router.push({ name: 'ResetPassword', query: { token } })
-    }
-  },
-
-  methods: {
-    handleReset() {
-      if (!validateEmail(this.formData.email)) {
-        this.$message({
-          message: 'E-mail Inválido!',
-          type: 'error',
-          duration: 10000
-        })
-        return
-      }
-      this.loading = true
-      this.$store
-        .dispatch('ForgotPassword', this.formData)
-        .then(() => {
-          this.loading = false
-          this.$message({
-            message: `Sucesso! Enviamos um e-mail para ${
-              this.formData.email
-            }, verifique sua caixa de entrada!`,
-            type: 'success',
-            duration: 30000
-          })
-          this.$router.push('/login')
-        })
-        .catch(() => {
-          this.$message({
-            message: `Ops! houve um erro ao enviar o e-mail para ${
-              this.formData.email
-            }, Tente novamente mais tarde!`,
-            type: 'error',
-            duration: 30000
-          })
-          this.loading = false
-        })
-    },
-
-    handleLogin() {
-      this.loading = true
-      setTimeout(() => {
-        this.$router.push({ path: '/login' })
-        this.loading = false
-      }, 100)
-    }
-  }
-}
 </script>
 
 <style rel="stylesheet/scss" lang="scss">

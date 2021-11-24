@@ -80,111 +80,101 @@
 </template>
 
 <script>
+
 import { isValidEmail } from '../../validators'
 
 export default {
-  name: 'login-component',
+    name: 'login-component',
 
-  data() {
-    return {
-      modalTitle: 'Fazer Login',
-      modalTitleLoggedIn: 'Bem Vindo!',
-      primaryBtnLabel: 'Fazer Login',
-      emailRequiredLabel: 'O E-mail é obrigatório!',
-      passwordRequiredLabel: 'A Senha é obrigatória!',
-      emailNotValidLabel: 'E-mail inválido!',
-      btnLoggedInLabel: 'Fechar',
-      emailPlaceholder: 'Seu e-mail',
-      email: '',
-      password: '',
-      highlightEmailWithError: null,
-      highlightPasswordWithError: null,
-      isFormSuccess: false
-    }
-  },
-
-  computed: {
-    isUserLoggedIn() {
-      return this.$store.getters.isUserLoggedIn
-    },
-    openModal() {
-      if (this.$store.getters.isLoginModalOpen) {
-        return true
-      } else {
-        return false
-      }
-    }
-  },
-
-  methods: {
-    closeModal() {
-      this.$store.commit('showLoginModal', false)
-    },
-
-    checkForm(e) {
-      e.preventDefault()
-
-      if (this.email && this.password) {
-        this.highlightEmailWithError = false
-        this.highlightPasswordWithError = false
-        this.isFormSuccess = true
-        this.$store
-          .dispatch('login', {
-            email: this.email,
-            password: this.password
-          })
-          .then(() => {
-            this.$store.dispatch('getUser')
-          })
-      }
-
-      if (!this.email) {
-        this.highlightEmailWithError = true
-
-        if (this.email && !isValidEmail(this.email)) {
-          this.emailRequiredLabel = this.emailNotValidLabel
+    data() {
+        return {
+            modalTitle:                 'Fazer Login',
+            modalTitleLoggedIn:         'Bem Vindo!',
+            primaryBtnLabel:            'Fazer Login',
+            emailRequiredLabel:         'O E-mail é obrigatório!',
+            passwordRequiredLabel:      'A Senha é obrigatória!',
+            emailNotValidLabel:         'E-mail inválido!',
+            btnLoggedInLabel:           'Fechar',
+            emailPlaceholder:           'Seu e-mail',
+            email:                      '',
+            password:                   '',
+            highlightEmailWithError:    null,
+            highlightPasswordWithError: null,
+            isFormSuccess:              false
         }
-      } else {
-        this.highlightEmailWithError = false
-      }
-
-      if (!this.password) {
-        this.highlightPasswordWithError = true
-      } else {
-        this.highlightPasswordWithError = false
-      }
     },
 
-    checkEmailOnKeyUp(emailValue) {
-      if (emailValue && isValidEmail(emailValue)) {
-        this.highlightEmailWithError = false
-      } else {
-        this.highlightEmailWithError = true
-
-        if (!isValidEmail(emailValue)) {
-          this.emailRequiredLabel = this.emailNotValidLabel
+    computed: {
+        isUserLoggedIn() {
+        return this.$store.getters.isUserLoggedIn
+        },
+        openModal() {
+            return this.$store.getters.isLoginModalOpen ? true : false
         }
-      }
     },
 
-    checkPasswordOnKeyUp(passwordValue) {
-      if (passwordValue) {
-        this.highlightPasswordWithError = false
-      } else {
-        this.highlightPasswordWithError = true
-      }
+    methods: {
+        closeModal() {
+        this.$store.commit('showLoginModal', false)
+        },
+
+        checkForm(e) {
+            e.preventDefault()
+
+            if (this.email && this.password) {
+                this.highlightEmailWithError    = false
+                this.highlightPasswordWithError = false
+                this.isFormSuccess              = true
+
+                this.$store
+                .dispatch('login', {
+                    email: this.email,
+                    password: this.password
+                })
+                .then(() => {
+                    this.$store.dispatch('getUser')
+                })
+            }
+
+            if (this.email) {
+                this.highlightEmailWithError = false
+            } else {
+                this.highlightEmailWithError = true
+
+                if (this.email && !isValidEmail(this.email)) {
+                this.emailRequiredLabel = this.emailNotValidLabel
+                }
+            }
+
+            this.highlightPasswordWithError = !passwordValue ? true : false
+        },
+
+        checkEmailOnKeyUp(emailValue) {
+            if (emailValue && isValidEmail(emailValue)) {
+                this.highlightEmailWithError = false
+            } else {
+                this.highlightEmailWithError = true
+
+                if (!isValidEmail(emailValue)) {
+                this.emailRequiredLabel = this.emailNotValidLabel
+                }
+            }
+        },
+
+        checkPasswordOnKeyUp(passwordValue) {
+            this.highlightPasswordWithError = passwordValue ? false : true
+        }
     }
-  }
 }
 </script>
 
 <style lang="scss">
-.fa-exclamation-circle {
-  color: red;
-}
-.fa-check {
-  color: green;
-}
+    .fa-exclamation-circle {
+        color: red;
+    }
+    .fa-check {
+        color: green;
+    }
 </style>
 
 
