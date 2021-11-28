@@ -37,6 +37,10 @@ Uma aplicação web para catalogar, realizar e receber pedidos de produtos
 - Navegue até o repositório web/admin e rode npm install ou yarn install
 - Navegue até o repositório web/client e rode npm install ou yarn install
 
+## 
+- Configure os arquivos .env de acordo com suas configurações locais ou use as mesmas já existens nos arquivos a fim de evitar problemas para executar
+- Para ver ou alterar as configurações dos arquivos .env navegue até o diretório /server/.env
+
 ## Startando a aplicação
 - Navegue até o repositório server/ npm run dev ou yarn run dev
 - Navegue até o repositório web/admin npm run dev ou yarn run dev
