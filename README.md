@@ -1,36 +1,54 @@
-# Todos Os comandos que usam npm pode ser substituídos por yarn caso tenha preferencia
+<h1 align="center">
+    Plataforma para catalogar e vender produtos
+</h1>
 
-# Instalar NodeJS Versão Usada 12.18.3
+<p align="center">
+  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-usar">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-licença">Licença</a>
+</p>
 
-# 
-# brew install node@12
+<br>
 
+## Tecnologias
 
-# ----- Instalar Projeto Servidor (API) -----
+Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-# Acessar o Diretório (plaforma-vendas/web/admin)
+- [Node.js](https://nodejs.org/en/)
+- [Adonis Framework](https://adonisjs.com/)
+- [Vue JS](https://vuejs.org/)
+- [MySQL](https://www.mysql.com/)
 
-# Instalar dependencias
-npm install
+## 💻 Projeto
 
-# Rodar Servidor
-npm run dev
+Uma aplicação web para catalogar, realizar e receber pedidos de produtos
 
+## 🤔 Como usar
 
-# ----- Instalar Cliente -----
+- Instale o NodeJS versão 12.18.3 https://nodejs.org/en/download/
+- Instale o Yarn https://classic.yarnpkg.com/lang/en/docs/install/ (Opcional pode usar o npm caso seja de sua preferência)
+- Instale o Adonis framework versão 4.0.12 https://docs.adonisjs.com/guides/installation
+- Instale o mysql versão 5.7 https://www.mysql.com/downloads/
+- Clone o repositório https://github.com/marlon-developer/plataforma-vendas-produtos
 
-# Acessar o Diretório (plaforma-vendas/web/client)
+## Os Comandos seguintes irão instalar as dependencias
+- Navegue até o repositório server/ e rode npm install ou yarn install
+- Navegue até o repositório web/admin e rode npm install ou yarn install
+- Navegue até o repositório web/client e rode npm install ou yarn install
 
-# Instalar Vue cli
-npm install -g @vue/cli
+## Startando a aplicação
+- Navegue até o repositório server/ npm run dev ou yarn run dev
+- Navegue até o repositório web/admin npm run dev ou yarn run dev
+- Navegue até o repositório web/client npm run dev ou yarn run dev
 
-# Clone repository
-git clone https://github.com/ivanlori/Vuemmerce.git
+- No browser digite http://127.0.0.1:9527 (Abrirá a Tela do Administrador)
+- No browser digite http://127.0.0.1:8080 (Abrirá a Tela do Cliente)
 
-# Instalar dependencias
-npm install
+## :memo: Licença
 
-# Rodar Servidor
-npm run dev
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para maiores detalhes.
 
-# Abrir o seguinte endereço no Browser: localhost:8080
+---
+
+Desenvolvidor por Márlon da Rosa (https://github.com/marlon-developer)
