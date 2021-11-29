@@ -41,15 +41,14 @@ Uma aplicação web para catalogar, realizar e receber pedidos de produtos
 - Navegue até o repositório web/admin e rode npm install ou yarn install
 - Navegue até o repositório web/client e rode npm install ou yarn install
 
-## Login
-- O login usado tem permissão máxima então conseguirá logar como administrador e/ou cliente
-Uso o seguinte login
-Usuário: dev@dev.com.br
-Senha: 123456
-
-## 
+## Configuração de Ambiente 
 - Configure os arquivos .env de acordo com suas configurações locais ou use as mesmas já existens nos arquivos a fim de evitar problemas para executar
 - Para ver ou alterar as configurações dos arquivos .env navegue até o diretório /server/.env
+
+## Login
+- O login usado tem permissão máxima então conseguirá logar como administrador e/ou cliente
+    Usuário: dev@dev.com.br
+    Senha: 123456
 
 ## Startando a aplicação
 - Navegue até o repositório server/ npm run dev ou yarn run dev
