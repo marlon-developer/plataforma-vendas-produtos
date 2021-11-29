@@ -46,8 +46,8 @@ Uma aplicação web para catalogar, realizar e receber pedidos de produtos
 - Para ver ou alterar as configurações dos arquivos .env navegue até o diretório /server/.env
 
 ## Login
-- O login usado tem permissão máxima então conseguirá logar como administrador e/ou cliente
-    Usuário: dev@dev.com.br
+- O login usado tem permissão máxima então conseguirá logar como administrador e/ou cliente <br>
+    Usuário: dev@dev.com.br <br>
     Senha: 123456
 
 ## Startando a aplicação
