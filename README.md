@@ -31,11 +31,24 @@ Uma aplicação web para catalogar, realizar e receber pedidos de produtos
 - Instale o Adonis framework versão 4.0.12 https://docs.adonisjs.com/guides/installation
 - Instale o mysql versão 5.7 https://www.mysql.com/downloads/
 - Clone o repositório https://github.com/marlon-developer/plataforma-vendas-produtos
+- Importe o Banco de Dados que está no repositório do projeto
+    - Aconselha-se usar o mysql Workbench ambiente onde foi testado
+    - No menu clique em Server/Data Import
+    - Escolha o diretório do backup do banco de dados com o nome ecommerce
 
 ## Os Comandos seguintes irão instalar as dependencias
 - Navegue até o repositório server/ e rode npm install ou yarn install
 - Navegue até o repositório web/admin e rode npm install ou yarn install
 - Navegue até o repositório web/client e rode npm install ou yarn install
+
+## Configuração de Ambiente 
+- Configure os arquivos .env de acordo com suas configurações locais ou use as mesmas já existens nos arquivos a fim de evitar problemas para executar
+- Para ver ou alterar as configurações dos arquivos .env navegue até o diretório /server/.env
+
+## Login
+- O login usado tem permissão máxima então conseguirá logar como administrador e/ou cliente <br>
+    Usuário: dev@dev.com.br <br>
+    Senha: 123456
 
 ## Startando a aplicação
 - Navegue até o repositório server/ npm run dev ou yarn run dev
